@@ -1,0 +1,10 @@
+# Fusion ablation on two radar views of the same recording (NOT radar + vision).
+experiment: multiview_fusion
+n_splits: 5
+split_seed: 0
+seeds: [0, 1]
+n_boot: 1000
+backbone: light_cnn
+fusions: [early, feature, cross_attention]
+spec: {n_window: 200, hop: 40, n_fft: 256, window: hann, fd_max_hz: 250.0, dynamic_range_db: 45.0}
+train: {epochs: 40, batch_size: 64, lr: 0.002, weight_decay: 0.01, patience: 10}

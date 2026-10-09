@@ -1,0 +1,12 @@
+# RQ2: robustness to additive white Gaussian noise injected before the STFT.
+experiment: snr_sweep
+n_splits: 5
+split_seed: 0
+seeds: [0]
+noise_seed: 123
+snr_db: [30, 20, 15, 10, 5, 0, -5, -10]
+models: [svm, random_forest, light_cnn, resnet_small]
+augmented_models: [light_cnn]
+augment: {snr_db_range: [-5.0, 30.0], p_noise: 0.7, max_shift: 250, speed_range: [0.9, 1.1]}
+spec: {n_window: 200, hop: 40, n_fft: 256, window: hann, fd_max_hz: 250.0, dynamic_range_db: 45.0}
+train: {epochs: 40, batch_size: 64, lr: 0.002, weight_decay: 0.01, patience: 10}

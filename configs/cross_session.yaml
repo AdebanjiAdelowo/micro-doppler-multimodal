@@ -1,0 +1,15 @@
+# RQ4: generalisation to unseen collection sessions (rooms, dates, populations).
+experiment: cross_session
+split_seed: 0
+seeds: [0, 1, 2]
+n_boot: 1000
+models: [svm, random_forest, light_cnn, resnet_small]
+spec: {n_window: 200, hop: 40, n_fft: 256, window: hann, fd_max_hz: 250.0, dynamic_range_db: 45.0}
+train: {epochs: 40, batch_size: 64, lr: 0.002, weight_decay: 0.01, patience: 10}
+splits:
+  unseen_sites_6_7: [6, 7]      # train: university rooms; test: housing association + Age UK
+  unseen_site_6: [6]
+  unseen_site_7: [7]
+  unseen_room_4: [4]            # university common room, test only
+  unseen_session_1: [1]
+  unseen_session_5: [5]

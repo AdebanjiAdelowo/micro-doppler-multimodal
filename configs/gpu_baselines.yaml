@@ -1,0 +1,10 @@
+# Larger study intended for an NVIDIA GPU (Kaggle/Colab). NOT run locally.
+experiment: baselines
+n_splits: 5
+split_seed: 0
+seeds: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+n_boot: 2000
+reference: light_cnn
+models: [svm, random_forest, light_cnn, resnet_small, temporal_cnn, transformer]
+spec: {n_window: 200, hop: 40, n_fft: 256, window: hann, fd_max_hz: 250.0, dynamic_range_db: 45.0}
+train: {epochs: 80, batch_size: 64, lr: 0.002, weight_decay: 0.01, patience: 20}

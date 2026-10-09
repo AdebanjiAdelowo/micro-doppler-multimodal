@@ -1,0 +1,6 @@
+# RQ6: parameter count, memory and measured latency at batch size 1.
+experiment: latency
+repeats: 200
+warmup: 20
+models: [light_cnn, resnet_small, temporal_cnn, transformer]
+spec: {n_window: 200, hop: 40, n_fft: 256, window: hann, fd_max_hz: 250.0, dynamic_range_db: 45.0}

@@ -1,0 +1,25 @@
+# RQ2: time-frequency resolution studies. PRF = 1 kHz, so samples = milliseconds.
+experiment: stft_ablation
+n_splits: 5
+split_seed: 0
+seeds: [0]
+n_boot: 1000
+models: [random_forest, light_cnn]
+spec: {window: hann, fd_max_hz: 250.0, dynamic_range_db: 45.0}
+train: {epochs: 40, batch_size: 64, lr: 0.002, weight_decay: 0.01, patience: 10}
+studies:
+  # window length varies, frame period fixed at 40 ms
+  window:
+    - {n_window: 32, hop: 40, n_fft: 256}
+    - {n_window: 64, hop: 40, n_fft: 256}
+    - {n_window: 128, hop: 40, n_fft: 256}
+    - {n_window: 256, hop: 40, n_fft: 256}
+    - {n_window: 512, hop: 40, n_fft: 512}
+    - {n_window: 1024, hop: 40, n_fft: 1024}
+  # overlap varies, window fixed at 256 ms
+  overlap:
+    - {n_window: 256, hop: 256, n_fft: 256}
+    - {n_window: 256, hop: 128, n_fft: 256}
+    - {n_window: 256, hop: 64, n_fft: 256}
+    - {n_window: 256, hop: 32, n_fft: 256}
+    - {n_window: 256, hop: 16, n_fft: 256}

@@ -1,0 +1,8 @@
+.venv
+.git
+data
+runs
+checkpoints
+notebooks
+results
+**/__pycache__
